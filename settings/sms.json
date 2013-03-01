@@ -1,0 +1,31 @@
+{
+	"connect":
+	{
+		"ip":"192.168.67.222",
+		"port":23,
+		"login":"root",
+		"password":"VtufGfhjkm"
+	},
+	"tables":
+	{
+		"messages":
+		{
+			"name":"SMS_INBOX",
+			"fields":
+			{
+				"index":"INDEX",
+				"sim":"SUMINDEX",
+				"phone":"PHONENUMBER",
+				"date":"DATEIN",
+				"text":"MESSAGE"
+			}
+		}
+	},
+	"commands":
+	{
+		"getAllMessages":
+		{
+			"cmd":"gsm 0 0 sms message list all"
+		}
+	}
+}

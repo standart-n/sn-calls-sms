@@ -8,13 +8,11 @@ HR=\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\
 # BUILD DOCS
 #
 
-all: start folders client server-php server-node finish
+all: folders client server finish
 
-client: coffee-js js css img ajaxloader
+client: coffee-js js css img jade-tpl ajaxloader
 
-server-node: app controls-js routes-js jade-js
-
-server-php: jade-tpl
+server: app controls-js routes-js jade-js
 
 sn: sn-css main-css coffee-js sn-js lmd
 
@@ -111,12 +109,18 @@ jade-js:
 
 app:
 	@echo "\napp...\n"
-	@coffee -cbjvp ./script/app*.coffee > ./app.js
-
-
+	@coffee -cbjvp ./script/app*.coffee > ./app
 
 start:
-	@echo "standart-n: \n"
+	@echo "forever start -o ./log/out.log -e ./log/err.log app"
+	@forever start -o ./log/out.log -e ./log/err.log app
+
+stop:
+	@echo "stop app"
+	@forever stop app
+
+
+
 
 folders:
 	@mkdir -p ./tpl/cache
