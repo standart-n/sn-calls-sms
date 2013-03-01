@@ -8,6 +8,8 @@ HR=\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\
 # BUILD DOCS
 #
 
+def: all
+
 all: folders client server finish
 
 client: coffee-js js css img jade-tpl ajaxloader
