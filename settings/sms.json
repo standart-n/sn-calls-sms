@@ -26,6 +26,10 @@
 		"getAllMessages":
 		{
 			"cmd":"gsm 0 0 sms message list all"
+		},
+		"rmAllMessages":
+		{
+			"cmd":"gsm 0 0 sms message delete all"
 		}
 	}
 }

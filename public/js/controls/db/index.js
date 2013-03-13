@@ -14,10 +14,16 @@ exports.opendb = function(callback) {
     if (err) {
       return console.log('firebird:'.error, err.message.data);
     } else {
-      console.log('firebird:'.info, 'connected to base'.data);
-      return callback(db);
+      console.log('firebird:'.info, 'connected to database'.data);
+      if (callback) {
+        return callback(db);
+      }
     }
   });
+};
+
+exports.disconnect = function(db) {
+  return db.detach();
 };
 
 exports.query = function(sql, db, callback) {
@@ -27,7 +33,9 @@ exports.query = function(sql, db, callback) {
     if (err) {
       return console.log('firebird:'.error, err.message.data);
     } else {
-      return callback(result);
+      if (callback) {
+        return callback(result);
+      }
     }
   });
 };
@@ -45,7 +53,9 @@ exports.check = function(tr, callback) {
   colors = global.controls.lib.colors.init();
   return function(err, param) {
     if (!err) {
-      return callback(err, param);
+      if (callback) {
+        return callback(err, param);
+      }
     } else {
       tr.rollback();
       return console.log('firebird:'.error, err.message.data);

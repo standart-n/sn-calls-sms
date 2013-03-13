@@ -4,20 +4,23 @@ exports.index = (req, res) ->
 	cn = global.appsettings
 	colors = global.controls.lib.colors.init()
 
-	# global.controls.db.opendb (db) ->
-	# 	db.query global.controls.sql.getUserList(), (err, result) ->
-	# 		console.log(result)
-
-
-	# socket = io.connect(cn.ip+':'+cn.port)
+	rmAllMessages = () ->
+		global.controls.client.connect cn, (client) ->
+			global.controls.client.rmAllMessages client, cn
 
 
 	global.controls.client.connect cn, (client) ->
-		global.controls.client.getAllMessages client, cn, (data) ->
+		global.controls.client.getAllMessages client, cn, (ms) ->
 			global.controls.db.opendb (db) ->
-				data.filter (value, i) ->
+				ms.filter (value, i) -> 
 					global.controls.client.insertMessageIntoBase value, cn, db, (res) ->
+						console.log 'insert:'.info, i.toString().data, value.phone.data, value.text.data
+						if parseInt(i)==parseInt(ms.length-1)
+							# console.log 'disconnect'.info, parseInt(i).toString(), parseInt(ms.length-1).toString()
+							global.controls.db.disconnect db 
+							rmAllMessages()
 
+		
 
 
 

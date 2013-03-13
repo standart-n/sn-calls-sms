@@ -1,40 +1,38 @@
 {
-	"name": "sn-sms",
-	"preferGlobal": false,
-	"description": "A simple CLI tool for work with sms in standart-n automation",
-	"version": "0.0.5",
-	"author": "aleksnick <aleksnick01@list.ru>",
-	"maintainers": [
-		"aleksnick <aleksnick01@list.ru>"
-	],
-	"repository": {
-		"type": "git",
-		"url": "http://github.com/standart-n/sn-calls-sms.git"
-	},
-	"keywords": [
-		"cli",
-		"sn",
-		"standart-n",
-		"calls",
-		"sms"
-	],
-	"bin": "./sn-sms",
-	"main": "./app",
-	"scripts": {
-		"test": "make test"
-	},
-	"dependencies": {
-		"express": "3.x",
-		"commander": "*",
-		"net": "*",
-		"table-parser": "*",
-		"colors": "*",
-		"node-firebird": "*",
-		"validator": "*",
-		"jade": "*"
-	},
-	"engines": {
-		"node": "0.8.x"
-	}
+  "name": "sn-sms",
+  "preferGlobal": false,
+  "description": "A simple CLI tool for work with sms in standart-n automation",
+  "version": "0.0.9",
+  "author": "aleksnick <aleksnick01@list.ru>",
+  "maintainers": [
+    "aleksnick <aleksnick01@list.ru>"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/standart-n/sn-calls-sms.git"
+  },
+  "keywords": [
+    "cli",
+    "sn",
+    "standart-n",
+    "calls",
+    "sms"
+  ],
+  "bin": "./sn-sms",
+  "main": "./app",
+  "scripts": {
+    "test": "make test"
+  },
+  "dependencies": {
+    "commander": "*",
+    "net": "*",
+    "table-parser": "*",
+    "colors": "*",
+    "node-firebird": "*",
+    "validator": "*"
+  },
+  "engines": {
+    "node": "0.8.x"
+  },
+  "devDependencies": {}
 }
-

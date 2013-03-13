@@ -23,16 +23,18 @@ exports.snParseMessages = function(data) {
   s = s.replace(/(.*?)> exit/g, '');
   lines = s.match(/^([\ 0-9]{5}[\ 0-9]{9}[\ 0-9a-zA-Z\.\+\:]{16}[\ 0-9a-zA-Z\.\+\:]{26} .*?)$/gim);
   if (lines) {
-    lines.filter(function(value, i) {
-      var date;
-      ms[i] = {};
-      ms[i].id = sanitize(value.replace(/^([\ 0-9]{5})([\ 0-9]{9})([\ 0-9a-zA-Z\.\+\:]{16})([\ 0-9a-zA-Z\.\+\:]{26}) (.*?)$/i, '$1')).trim();
-      ms[i].sim = sanitize(value.replace(/^([\ 0-9]{5})([\ 0-9]{9})([\ 0-9a-zA-Z\.\+\:]{16})([\ 0-9a-zA-Z\.\+\:]{26}) (.*?)$/i, '$2')).trim();
-      ms[i].phone = sanitize(value.replace(/^([\ 0-9]{5})([\ 0-9]{9})([\ 0-9a-zA-Z\.\+\:]{16})([\ 0-9a-zA-Z\.\+\:]{26}) (.*?)$/i, '$3')).trim();
-      ms[i].text = sanitize(value.replace(/^([\ 0-9]{5})([\ 0-9]{9})([\ 0-9a-zA-Z\.\+\:]{16})([\ 0-9a-zA-Z\.\+\:]{26}) (.*?)$/i, '$5')).trim();
-      date = sanitize(value.replace(/^([\ 0-9]{5})([\ 0-9]{9})([\ 0-9a-zA-Z\.\+\:]{16})([\ 0-9a-zA-Z\.\+\:]{26}) (.*?)$/i, '$4')).trim();
-      return ms[i].date = global.controls.parser.parseMessageDate(date);
-    });
+    if (lines.length > 0) {
+      lines.filter(function(value, i) {
+        var date;
+        ms[i] = {};
+        ms[i].id = sanitize(value.replace(/^([\ 0-9]{5})([\ 0-9]{9})([\ 0-9a-zA-Z\.\+\:]{16})([\ 0-9a-zA-Z\.\+\:]{26}) (.*?)$/i, '$1')).trim();
+        ms[i].sim = sanitize(value.replace(/^([\ 0-9]{5})([\ 0-9]{9})([\ 0-9a-zA-Z\.\+\:]{16})([\ 0-9a-zA-Z\.\+\:]{26}) (.*?)$/i, '$2')).trim();
+        ms[i].phone = sanitize(value.replace(/^([\ 0-9]{5})([\ 0-9]{9})([\ 0-9a-zA-Z\.\+\:]{16})([\ 0-9a-zA-Z\.\+\:]{26}) (.*?)$/i, '$3')).trim();
+        ms[i].text = sanitize(value.replace(/^([\ 0-9]{5})([\ 0-9]{9})([\ 0-9a-zA-Z\.\+\:]{16})([\ 0-9a-zA-Z\.\+\:]{26}) (.*?)$/i, '$5')).trim();
+        date = sanitize(value.replace(/^([\ 0-9]{5})([\ 0-9]{9})([\ 0-9a-zA-Z\.\+\:]{16})([\ 0-9a-zA-Z\.\+\:]{26}) (.*?)$/i, '$4')).trim();
+        return ms[i].date = global.controls.parser.parseMessageDate(date);
+      });
+    }
   }
   return ms;
 };
