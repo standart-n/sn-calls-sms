@@ -15,11 +15,8 @@ exports.index = (req, res) ->
 	global.controls.client.connect cn, (client) ->
 		global.controls.client.getAllMessages client, cn, (data) ->
 			global.controls.db.opendb (db) ->
-				global.controls.client.insertMessageIntoBase data[0], cn, db, (res) ->
-
-	console.log global.controls.sql.sms.insertMessageIntoBase {}, cn
-
-			# console.log data
+				data.filter (value, i) ->
+					global.controls.client.insertMessageIntoBase value, cn, db, (res) ->
 
 
 

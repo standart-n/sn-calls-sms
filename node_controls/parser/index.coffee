@@ -44,7 +44,7 @@ exports.parseMessageDate = (s) ->
 		ms.n = i if value == ms.M
 	if ms.n < 10 then ms.m = '0' + ms.n.toString() else ms.m = ms.n
 	if ms.j < 10 then ms.d = '0' + ms.j.toString() else ms.d = ms.j
-	ms.date = ms.Y + '-' + ms.m + '-' + ms.d
+	ms.date = ms.d + '.' + ms.m + '.' + ms.Y
 	ms.time = ms.H + ':' + ms.i + ':' + ms.s
 	ms.datetime = ms.date+' '+ms.time
 	ms

@@ -32,8 +32,5 @@ exports.getAllMessages = (client, cn, callback) ->
 		# callback global.clientAnswer
 
 exports.insertMessageIntoBase = (data, cn, db, callback) ->
-	console.log global.controls.db.sms.insertMessage data, cn
-	# global.controls.db.query 
-		# db
-		# (result) ->
-		#	callback result 
+	global.controls.db.query global.controls.db.sms.insertMessage(data,cn), db, (result) ->
+		callback result

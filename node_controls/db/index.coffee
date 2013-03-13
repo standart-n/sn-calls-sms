@@ -37,4 +37,3 @@ exports.check = (tr, callback) ->
 		else
 			tr.rollback()
 			console.log 'firebird:'.error, err.message.data
-
