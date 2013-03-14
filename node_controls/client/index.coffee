@@ -23,7 +23,7 @@ exports.getAllMessages = (client, cn, callback) ->
 
 	client.on 'close', () ->
 		if global.clientAnswer != ''
-			console.log global.clientAnswer.data
+			console.log global.clientAnswer.data if global.program.debug
 			ms = global.controls.parser.snParseMessages global.clientAnswer 
 			if parseInt(ms.length) > 0 
 				console.log 'client:'.info, parseInt(ms.length).toString().data, 'new sms'.data

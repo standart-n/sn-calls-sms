@@ -11,17 +11,21 @@ exports.index = function(req, res) {
   };
   return global.controls.client.connect(cn, function(client) {
     return global.controls.client.getAllMessages(client, cn, function(ms) {
-      return global.controls.db.opendb(function(db) {
-        return ms.filter(function(value, i) {
-          return global.controls.client.insertMessageIntoBase(value, cn, db, function(res) {
-            console.log('insert:'.info, i.toString().data, value.phone.data, value.text.data);
-            if (parseInt(i) === parseInt(ms.length - 1)) {
-              global.controls.db.disconnect(db);
-              return rmAllMessages();
-            }
+      if (global.program.firebird) {
+        return global.controls.db.opendb(function(db) {
+          return ms.filter(function(value, i) {
+            return global.controls.client.insertMessageIntoBase(value, cn, db, function(res) {
+              console.log('insert:'.info, i.toString().data, value.phone.data, value.text.data);
+              if (parseInt(i) === parseInt(ms.length - 1)) {
+                global.controls.db.disconnect(db);
+                if (global.program.remove) {
+                  return rmAllMessages();
+                }
+              }
+            });
           });
         });
-      });
+      }
     });
   });
 };

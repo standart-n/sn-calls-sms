@@ -28,7 +28,9 @@ exports.getAllMessages = function(client, cn, callback) {
   return client.on('close', function() {
     var ms;
     if (global.clientAnswer !== '') {
-      console.log(global.clientAnswer.data);
+      if (global.program.debug) {
+        console.log(global.clientAnswer.data);
+      }
       ms = global.controls.parser.snParseMessages(global.clientAnswer);
       if (parseInt(ms.length) > 0) {
         console.log('client:'.info, parseInt(ms.length).toString().data, 'new sms'.data);
