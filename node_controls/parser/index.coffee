@@ -34,15 +34,15 @@ exports.snParseMessages = (data) ->
 
 exports.parseMessageDate = (s) ->
 	ms =  {}	
-	ms.D = s.replace(/(Sun|Mon|Tue|Wed|Thu|Fri|Sat|Sun)\s{1,3}(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s{1,3}(\d){1,2}\s{1,2}([0-1][0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])\s{1,3}((19|20)\d\d)/gm,'$1')
-	ms.M = s.replace(/(Sun|Mon|Tue|Wed|Thu|Fri|Sat|Sun)\s{1,3}(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s{1,3}(\d){1,2}\s{1,2}([0-1][0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])\s{1,3}((19|20)\d\d)/gm,'$2')
-	ms.j = s.replace(/(Sun|Mon|Tue|Wed|Thu|Fri|Sat|Sun)\s{1,3}(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s{1,3}(\d){1,2}\s{1,2}([0-1][0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])\s{1,3}((19|20)\d\d)/gm,'$3')
-	ms.H = s.replace(/(Sun|Mon|Tue|Wed|Thu|Fri|Sat|Sun)\s{1,3}(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s{1,3}(\d){1,2}\s{1,2}([0-1][0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])\s{1,3}((19|20)\d\d)/gm,'$4')
-	ms.i = s.replace(/(Sun|Mon|Tue|Wed|Thu|Fri|Sat|Sun)\s{1,3}(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s{1,3}(\d){1,2}\s{1,2}([0-1][0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])\s{1,3}((19|20)\d\d)/gm,'$5')
-	ms.s = s.replace(/(Sun|Mon|Tue|Wed|Thu|Fri|Sat|Sun)\s{1,3}(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s{1,3}(\d){1,2}\s{1,2}([0-1][0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])\s{1,3}((19|20)\d\d)/gm,'$6')
-	ms.Y = s.replace(/(Sun|Mon|Tue|Wed|Thu|Fri|Sat|Sun)\s{1,3}(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s{1,3}(\d){1,2}\s{1,2}([0-1][0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])\s{1,3}((19|20)\d\d)/gm,'$7')
+	ms.D = s.replace(/(Sun|Mon|Tue|Wed|Thu|Fri|Sat|Sun)\s{1,3}(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s{1,3}(\d{1,2})\s{1,2}([0-1][0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])\s{1,3}((19|20)\d\d)/gm,'$1')
+	ms.M = s.replace(/(Sun|Mon|Tue|Wed|Thu|Fri|Sat|Sun)\s{1,3}(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s{1,3}(\d{1,2})\s{1,2}([0-1][0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])\s{1,3}((19|20)\d\d)/gm,'$2')
+	ms.j = s.replace(/(Sun|Mon|Tue|Wed|Thu|Fri|Sat|Sun)\s{1,3}(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s{1,3}(\d{1,2})\s{1,2}([0-1][0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])\s{1,3}((19|20)\d\d)/gm,'$3')
+	ms.H = s.replace(/(Sun|Mon|Tue|Wed|Thu|Fri|Sat|Sun)\s{1,3}(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s{1,3}(\d{1,2})\s{1,2}([0-1][0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])\s{1,3}((19|20)\d\d)/gm,'$4')
+	ms.i = s.replace(/(Sun|Mon|Tue|Wed|Thu|Fri|Sat|Sun)\s{1,3}(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s{1,3}(\d{1,2})\s{1,2}([0-1][0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])\s{1,3}((19|20)\d\d)/gm,'$5')
+	ms.s = s.replace(/(Sun|Mon|Tue|Wed|Thu|Fri|Sat|Sun)\s{1,3}(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s{1,3}(\d{1,2})\s{1,2}([0-1][0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])\s{1,3}((19|20)\d\d)/gm,'$6')
+	ms.Y = s.replace(/(Sun|Mon|Tue|Wed|Thu|Fri|Sat|Sun)\s{1,3}(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s{1,3}(\d{1,2})\s{1,2}([0-1][0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])\s{1,3}((19|20)\d\d)/gm,'$7')
 	['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'].filter (value,i) ->
-		ms.n = i if value == ms.M
+		ms.n = i + 1 if value == ms.M
 	if ms.n < 10 then ms.m = '0' + ms.n.toString() else ms.m = ms.n
 	if ms.j < 10 then ms.d = '0' + ms.j.toString() else ms.d = ms.j
 	ms.date = ms.d + '.' + ms.m + '.' + ms.Y
