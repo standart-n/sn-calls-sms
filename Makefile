@@ -31,6 +31,7 @@ routes-js:
 app-js:
 	@echo "\napp...\n"
 	@coffee -cbjvp ./script/app*.coffee > ./app
+	@coffee -cbjvp ./script/server*.coffee > ./server.js
 
 start:
 	@echo "forever start -o ./log/out.log -e ./log/err.log app"

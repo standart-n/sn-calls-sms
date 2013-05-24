@@ -1,8 +1,5 @@
 
-# express = require 'express'
-# http = require 'http'
-# path = require 'path'
-# jade = require 'jade'
+path = require 'path'
 program = require 'commander'
 global.controls = require './public/js/controls'
 global.dbsettings = require './conf/database.json'

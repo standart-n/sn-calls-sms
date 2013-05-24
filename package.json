@@ -2,7 +2,7 @@
   "name": "sn-sms",
   "preferGlobal": false,
   "description": "A simple CLI tool for work with sms in standart-n automation",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "aleksnick <aleksnick01@list.ru>",
   "maintainers": [
     "aleksnick <aleksnick01@list.ru>"
@@ -24,6 +24,9 @@
     "test": "make test"
   },
   "dependencies": {
+    "http":"*",
+    "path":"*",
+    "express":"*",
     "commander": "*",
     "net": "*",
     "table-parser": "*",
