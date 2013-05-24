@@ -25,7 +25,7 @@ exports.getAllMessages = function(client, cn, res, callback) {
   });
   client.on('error', function(err) {
     console.log('telnet:'.error, err.message.data);
-    return res.send(err.message.data);
+    return res.send(err.message);
   });
   return client.on('close', function() {
     var ms;

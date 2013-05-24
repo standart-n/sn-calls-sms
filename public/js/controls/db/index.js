@@ -13,7 +13,7 @@ exports.opendb = function(res, callback) {
   }, function(err, db) {
     if (err) {
       console.log('firebird:'.error, err.message.data);
-      return res.send(err.message.data);
+      return res.send(err.message);
     } else {
       console.log('firebird:'.info, 'connected to database'.data);
       if (callback) {

@@ -20,7 +20,7 @@ exports.getAllMessages = (client, cn, res, callback) ->
 
 	client.on 'error', (err) ->
 		console.log 'telnet:'.error, err.message.data
-		res.send err.message.data
+		res.send err.message
 
 	client.on 'close', () ->
 		if global.clientAnswer != ''
