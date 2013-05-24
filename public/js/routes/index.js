@@ -19,7 +19,8 @@ exports.index = function(req, res) {
               if (parseInt(i) === parseInt(ms.length - 1)) {
                 global.controls.db.disconnect(db);
                 if (global.program.remove) {
-                  return rmAllMessages();
+                  rmAllMessages();
+                  return res.send('done');
                 }
               }
             });

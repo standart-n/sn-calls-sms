@@ -24,8 +24,6 @@
     "test": "make test"
   },
   "dependencies": {
-    "http":"*",
-    "path":"*",
     "express":"*",
     "commander": "*",
     "net": "*",

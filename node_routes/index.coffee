@@ -21,6 +21,7 @@ exports.index = (req, res) ->
 								global.controls.db.disconnect db
 								if global.program.remove
 									rmAllMessages()
+									res.send 'done'
 
 		
 
