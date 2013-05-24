@@ -10,7 +10,7 @@ exports.connect = function(cn, callback) {
   }
 };
 
-exports.getAllMessages = function(client, cn, callback) {
+exports.getAllMessages = function(client, cn, res, callback) {
   var colors;
 
   colors = global.controls.lib.colors.init();
@@ -24,7 +24,8 @@ exports.getAllMessages = function(client, cn, callback) {
     return global.clientAnswer += data.toString();
   });
   client.on('error', function(err) {
-    return console.log('telnet:'.error, err.message.data);
+    console.log('telnet:'.error, err.message.data);
+    return res.send(err.message.data);
   });
   return client.on('close', function() {
     var ms;
@@ -40,10 +41,12 @@ exports.getAllMessages = function(client, cn, callback) {
           return callback(ms);
         }
       } else {
-        return console.log('client:'.warn, parseInt(ms.length).toString().data, 'new sms'.data);
+        console.log('client:'.warn, parseInt(ms.length).toString().data, 'new sms'.data);
+        return res.send('0 sms');
       }
     } else {
-      return console.log('telnet:'.error, 'data not found'.data);
+      console.log('telnet:'.error, 'data not found'.data);
+      return res.send('data not found');
     }
   });
 };

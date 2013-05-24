@@ -5,7 +5,7 @@ exports.connect = (cn, callback) ->
 	client = net.connect cn.connect.port, cn.connect.ip
 	callback client if callback
 
-exports.getAllMessages = (client, cn, callback) ->
+exports.getAllMessages = (client, cn, res, callback) ->
 	colors = global.controls.lib.colors.init()
 	
 	client.write cn.connect.login + '\n'
@@ -20,6 +20,7 @@ exports.getAllMessages = (client, cn, callback) ->
 
 	client.on 'error', (err) ->
 		console.log 'telnet:'.error, err.message.data
+		res.send err.message.data
 
 	client.on 'close', () ->
 		if global.clientAnswer != ''
@@ -30,8 +31,10 @@ exports.getAllMessages = (client, cn, callback) ->
 				callback ms if callback
 			else 
 				console.log 'client:'.warn, parseInt(ms.length).toString().data, 'new sms'.data
+				res.send '0 sms'
 		else 
 			console.log 'telnet:'.error, 'data not found'.data
+			res.send 'data not found'
 
 exports.insertMessageIntoBase = (data, cn, db, callback) ->
 	global.controls.db.query global.controls.sql.sms.insertMessageIntoBase(data,cn), db, (result) ->

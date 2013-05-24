@@ -10,9 +10,9 @@ exports.index = function(req, res) {
     });
   };
   return global.controls.client.connect(cn, function(client) {
-    return global.controls.client.getAllMessages(client, cn, function(ms) {
+    return global.controls.client.getAllMessages(client, cn, res, function(ms) {
       if (global.program.firebird) {
-        return global.controls.db.opendb(function(db) {
+        return global.controls.db.opendb(res, function(db) {
           return ms.filter(function(value, i) {
             return global.controls.client.insertMessageIntoBase(value, cn, db, function(res) {
               console.log('insert:'.info, i.toString().data, value.phone.data, value.text.data);
@@ -21,11 +21,15 @@ exports.index = function(req, res) {
                 if (global.program.remove) {
                   rmAllMessages();
                   return res.send('done');
+                } else {
+                  return res.send('no remove');
                 }
               }
             });
           });
         });
+      } else {
+        return res.send('no firebird');
       }
     });
   });

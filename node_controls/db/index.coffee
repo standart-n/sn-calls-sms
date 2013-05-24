@@ -1,5 +1,5 @@
 
-exports.opendb = (callback) ->
+exports.opendb = (res, callback) ->
 
 	colors = global.controls.lib.colors.init()
 	fb = global.controls.lib.fb.init()
@@ -13,6 +13,7 @@ exports.opendb = (callback) ->
 		(err, db) ->
 			if (err)
 				console.log 'firebird:'.error, err.message.data
+				res.send err.message.data
 			else
 				console.log 'firebird:'.info, 'connected to database'.data
 				callback(db) if callback
