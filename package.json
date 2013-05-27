@@ -2,7 +2,7 @@
   "name": "sn-sms",
   "preferGlobal": false,
   "description": "A simple CLI tool for work with sms in standart-n automation",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "author": "aleksnick <aleksnick01@list.ru>",
   "maintainers": [
     "aleksnick <aleksnick01@list.ru>"

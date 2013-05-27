@@ -10,9 +10,9 @@ exports.index = (req, res) ->
 
 
 	global.controls.client.connect cn, (client) ->
-		global.controls.client.getAllMessages client, cn, res, (ms) ->
+		global.controls.client.getAllMessages client, cn, (ms) ->
 			if global.program.firebird
-				global.controls.db.opendb res, (db) ->
+				global.controls.db.opendb (db) ->
 					ms.filter (value, i) -> 
 						global.controls.client.insertMessageIntoBase value, cn, db, (res) ->
 							console.log 'insert:'.info, i.toString().data, value.phone.data, value.text.data
@@ -21,11 +21,8 @@ exports.index = (req, res) ->
 								global.controls.db.disconnect db
 								if global.program.remove
 									rmAllMessages()
-									res.send 'done'
-								else
-									res.send 'no remove'
-			else
-				res.send 'no firebird'
+
+	res.send 'standart-n'
 
 		
 
